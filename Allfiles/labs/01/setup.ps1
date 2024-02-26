@@ -127,7 +127,16 @@ $Region = $locations.Get($rand).Location
     }
 }
 Write-Host "Creating $resourceGroupName resource group in $Region ..."
-New-AzResourceGroup -Name $resourceGroupName -Location $Region | Out-Null
+
+$tags = @{
+    "Application" = "technologie_sandbox"
+    "Author" = "krt3186"
+    "Company" = "Primeo Management AG"
+    "CostCenter" = "191818"
+    "Environment" = "dev"
+}
+
+New-AzResourceGroup -Name $resourceGroupName -Location $Region -Tag $tags | Out-Null
 
 # Create Synapse workspace
 $synapseWorkspace = "synapse$suffix"
