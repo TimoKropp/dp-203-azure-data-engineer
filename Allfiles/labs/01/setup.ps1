@@ -146,6 +146,12 @@ $dataLakeAccountName = "datalake$suffix"
 $sparkPool = "spark$suffix"
 $sqlDatabaseName = "sql$suffix"
 
+# Additional parameters for tagging
+$application = "technologie_sandbox"
+$author = "krt3186"
+$company = "Primeo Management AG"
+$costCenter = "191818"
+$environment = "dev"
 
 write-host "Creating $synapseWorkspace Synapse Analytics workspace in $resourceGroupName resource group..."
 write-host "(This may take some time!)"
@@ -159,6 +165,11 @@ New-AzResourceGroupDeployment -ResourceGroupName $resourceGroupName `
   -sqlUser $sqlUser `
   -sqlPassword $sqlPassword `
   -uniqueSuffix $suffix `
+  -Application $application `
+  -Author $author `
+  -Company $company `
+  -CostCenter $costCenter `
+  -Environment $environment `
   -Force
 
 # Pause Data Explorer pool
