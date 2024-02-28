@@ -131,10 +131,10 @@ $Region = "switzerlandnorth"
 Write-Host "Creating $resourceGroupName resource group in $Region ..."
 
 $tags = @{
-    "Application" = "technologie_sandbox"
-    "Author" = "krt3186"
-    "Company" = "Primeo Management AG"
-    "CostCenter" = "191818"
+    "Application" = "technologie_sandbox";
+    "Author" = "krt3186";
+    "Company" = "Primeo Management AG";
+    "CostCenter" = "191818";
     "Environment" = "dev"
 }
 
@@ -149,8 +149,7 @@ $sqlDatabaseName = "sql$suffix"
 
 write-host "Creating $synapseWorkspace Synapse Analytics workspace in $resourceGroupName resource group..."
 write-host "(This may take some time!)"
-#New-AzResourceGroupDeployment -ResourceGroupName $resourceGroupName `
-New-AzResourceGroupDeployment -ResourceGroupName $resourceGroupName -Tag $tags `
+New-AzResourceGroupDeployment -ResourceGroupName $resourceGroupName `
   -TemplateFile "setup.json" `
   -Mode Complete `
   -workspaceName $synapseWorkspace `
