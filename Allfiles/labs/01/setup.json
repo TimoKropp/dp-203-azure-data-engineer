@@ -70,7 +70,12 @@
         "dependsOn": [],
         "properties": {
             "tags": {
-                "DeploymentId": "[parameters('uniqueSuffix')]"
+                "DeploymentId": "[parameters('uniqueSuffix')]",
+                "Application": "[parameters('Application')]",
+                "Author": "[parameters('Author')]",
+                "CostCenter": "[parameters('CostCenter')]",
+                "Company": "[parameters('Company')]",
+                "Environment": "[parameters('Environment')]"
             }
         }
     },
