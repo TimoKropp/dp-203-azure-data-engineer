@@ -139,7 +139,7 @@ $tags = @{
 }
 
 
-New-AzResourceGroup -Name $resourceGroupName -Location $Region | Out-Null
+New-AzResourceGroup -Name $resourceGroupName -Location $Region -Tag $tags | Out-Null
 
 # Create Synapse workspace
 $synapseWorkspace = "synapse$suffix"
