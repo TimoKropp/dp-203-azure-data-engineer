@@ -96,7 +96,8 @@ $locations = Get-AzLocation | Where-Object {
 }
 $max_index = $locations.Count - 1
 $rand = (0..$max_index) | Get-Random
-$Region = $locations.Get($rand).Location
+#$Region = $locations.Get($rand).Location
+$Region = "switzerlandnorth"
 
 # Test for subscription Azure SQL capacity constraints in randomly selected regions
 # (for some subsription types, quotas are adjusted dynamically based on capacity)
@@ -129,12 +130,28 @@ $Region = $locations.Get($rand).Location
     }
 }
 Write-Host "Creating $resourceGroupName resource group in $Region ..."
-New-AzResourceGroup -Name $resourceGroupName -Location $Region | Out-Null
+
+$tags = @{
+    "Application" = "technologie_sandbox";
+    "Author" = "krt3186";
+    "Company" = "Primeo Management AG";
+    "CostCenter" = "191818";
+    "Environment" = "dev"
+}
+
+New-AzResourceGroup -Name $resourceGroupName -Location $Region -Tag $tags | Out-Null
 
 # Create Synapse workspace
 $synapseWorkspace = "synapse$suffix"
 $dataLakeAccountName = "datalake$suffix"
 $sparkPool = "spark$suffix"
+
+# Additional parameters for tagging
+$application = "technologie_sandbox"
+$author = "krt3186"
+$company = "Primeo Management AG"
+$costCenter = "191818"
+$environment = "dev"
 
 write-host "Creating $synapseWorkspace Synapse Analytics workspace in $resourceGroupName resource group..."
 write-host "(This may take some time!)"
@@ -147,6 +164,11 @@ New-AzResourceGroupDeployment -ResourceGroupName $resourceGroupName `
   -sqlUser $sqlUser `
   -sqlPassword $sqlPassword `
   -uniqueSuffix $suffix `
+  -Application $application `
+  -Author $author `
+  -Company $company `
+  -CostCenter $costCenter `
+  -Environment $environment `
   -Force
 
 # Make the current user and the Synapse service principal owners of the data lake blob store
