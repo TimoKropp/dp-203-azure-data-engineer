@@ -159,8 +159,6 @@ New-AzResourceGroupDeployment -ResourceGroupName $resourceGroupName `
   -Mode Complete `
   -workspaceName $synapseWorkspace `
   -dataLakeAccountName $dataLakeAccountName `
-  -sparkPoolName $sparkPool `
-  -sqlDatabaseName $sqlDatabaseName `
   -sqlUser $sqlUser `
   -sqlPassword $sqlPassword `
   -uniqueSuffix $suffix `
